@@ -1,6 +1,7 @@
 :root {
   --primary-color: dodgerblue;
   --font-color: white;
+
 }
 
 html {
@@ -35,14 +36,14 @@ body {
 
 video {
   border-radius: 5px;
-
+width: 100%;
+height: auto;
 }
 
 /* Containers */
 .show-controls {
   width: 100%;
   height: 30%;
-  background: dodgerblue;
   z-index: 2;
   position: absolute;
   bottom: 0;
@@ -60,9 +61,14 @@ video {
   z-index: 5;
   display: flex;
   justify-content: space-between;
-
+opacity: 0;
+transition: all 0.5s ease-in-out 2s;
 }
 
+.show-controls:hover .controls-container{
+  opacity: 1;
+  transition: all 0.2s ease-out;
+}
 
 
 .control-group {
@@ -83,17 +89,21 @@ video {
 
 /* Progress Bar */
 .progress-range {
-
+  height: 8px;
+  width: calc(100% - 30px);
+  background: rgba(202, 202, 202, 0.5);
   margin: auto;
   border-radius: 10px;
   position: absolute;
   left: 15px;
   top: 15px;
   cursor: pointer;
-
+transition: height 0.1s ease-in-out;
 }
 
-
+.progress-range:hover {
+  height: 10px;
+}
 
 .progress-bar {
   background: var(--primary-color);
@@ -166,10 +176,15 @@ video {
   margin-right: 15px;
 }
 
-
-
+select,
+option{
+  cursor: pointer;
+}
+select:focus{
+  outline: none;
+}
 select {
-
+  background: transparent;
   color: var(--font-color);
   border: none;
   font-size: 18px;
@@ -207,10 +222,14 @@ select > option {
 
 /* Media Query: Large Smartphone (Vertical) */
 @media screen and (max-width: 600px) {
-
+  .player{
+    min-width: 0;
+    max-width: 95vw;
+  }
 
   .fas {
     font-size: 20px;
+    color: var(--font-color);
   }
 
   .controls-container {
